@@ -64,12 +64,15 @@ const container = document.querySelector('.about-me-container');
 const button = document.querySelector('.about-me-button');
 const content = document.querySelector('.about-me-content');
 let isAnimating = false;
+let closeTimeout; // used to track the timeout
 
 function toggleAboutMe(event) {
     event.stopPropagation();
     
     if (isAnimating) return;
     isAnimating = true;
+
+    const ANIMATION_DURATION = 300;
 
     if (container.classList.contains('open')) {
         // Closing animation
@@ -81,17 +84,33 @@ function toggleAboutMe(event) {
             button.style.visibility = 'visible';
             button.style.opacity = '1';
             isAnimating = false;
-        }, 500); // Match this to your CSS transition time
+        }, ANIMATION_DURATION); // Match this to your CSS transition time
     } else {
         // Opening animation
         button.style.visibility = 'hidden'; // Immediately hide button when opening
         button.style.opacity = '0';
         container.classList.add('open');
+
         setTimeout(() => {
             isAnimating = false;
-        }, 500);
+        }, ANIMATION_DURATION);
     }
 }
+
+container.addEventListener('mouseleave', () => {
+    if (container.classList.contains('open') && !isAnimating) {
+        closeTimeout = setTimeout(() => {
+            toggleAboutMe(new Event('mouseleave')); // Create a new event to pass to toggleAboutMe
+        }, 2000);
+    }
+});
+// Cancel the closing if mouse returns to container
+container.addEventListener('mouseenter', () => {
+    // Clear the timeout if mouse returns
+    if (closeTimeout) {
+        clearTimeout(closeTimeout);
+    }
+});
 
 button.addEventListener('click', toggleAboutMe);
 content.addEventListener('click', toggleAboutMe);
