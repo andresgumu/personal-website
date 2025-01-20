@@ -49,6 +49,17 @@ header h1 {
     white-space: nowrap;
     margin: 0;
     animation: blink 0.75s step-end infinite;
+    display: inline-block;
+}
+
+.typing-subtitle {
+    overflow: hidden;
+    border-right: 2px solid var(--accent-color);
+    white-space: nowrap;
+    margin: 0;
+    animation: blink 0.75s step-end infinite;
+    display: inline-block;
+    width: fit-content;
 }
 
 @keyframes blink {

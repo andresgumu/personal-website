@@ -20,37 +20,54 @@ const projects = [
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const finalText = "hey, I'm ";
+    const titleText = "hey, I'm ";
     const name = "Andrés Gumucio";
-    const typingText = document.querySelector('.typing-text');
+    const subtitleText = "I love building things with code.";
+    const typingTitle = document.querySelector('.typing-text');
+    const typingSubtitle = document.querySelector('.typing-subtitle');
+    const container = document.querySelector('.about-me-container');
     let index = 0;
     
-    typingText.innerHTML = ''; // Clear initial content
+    typingTitle.innerHTML = '';
+    typingSubtitle.innerHTML = '';
 
-    function type() {
-        if (index < finalText.length + name.length) {
-            if (index < finalText.length) {
-                // Typing the first part
-                typingText.innerHTML += finalText.charAt(index);
-            } else {
-                // Typing the name
-                if (index === finalText.length) {
-                    // Add span when starting the name
-                    typingText.innerHTML += '<span class="highlight">';
-                }
-                typingText.querySelector('.highlight').innerHTML += name.charAt(index - finalText.length);
-            }
-            index++;
-            setTimeout(type, 70); // Adjust speed here
-        } else {
-            // Remove the cursor animation after typing is complete
-            typingText.style.borderRight = 'none';
-            index = 0;
+    function openButton() {
+        if (!container.classList.contains('open')) {  // Only open if it's not already open
+            toggleAboutMe();
         }
     }
 
-    // Start typing animation after a small delay
-    setTimeout(type, 1000);
+    function typeSubtitle() {
+        if (index < subtitleText.length) {
+            typingSubtitle.innerHTML += subtitleText.charAt(index);
+            index++;
+            setTimeout(typeSubtitle, 50);
+        } else {
+            typingSubtitle.style.borderRight = 'none';
+            setTimeout(openButton, 500);
+        }
+    }
+
+    function typeTitle() {
+        if (index < titleText.length + name.length) {
+            if (index < titleText.length) {
+                typingTitle.innerHTML += titleText.charAt(index);
+            } else {
+                if (index === titleText.length) {
+                    typingTitle.innerHTML += '<span class="highlight">';
+                }
+                typingTitle.querySelector('.highlight').innerHTML += name.charAt(index - titleText.length);
+            }
+            index++;
+            setTimeout(typeTitle, 50);
+        } else {
+            typingTitle.style.borderRight = 'none';
+            index = 0;
+            setTimeout(typeSubtitle, 500);
+        }
+    }
+
+    setTimeout(typeTitle, 200); // time until function is called and animation starts
 });
 
 
@@ -131,12 +148,6 @@ function toggleAboutMe(event) {
     }
 }
 
-// Auto-open when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        toggleAboutMe();
-    }, 500); // Small delay after page load before opening
-});
 
 // Keep only the click handlers
 button.addEventListener('click', toggleAboutMe);
