@@ -18,6 +18,42 @@ const projects = [
     // Add more projects here
 ];
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const finalText = "hey, I'm ";
+    const name = "Andrés Gumucio";
+    const typingText = document.querySelector('.typing-text');
+    let index = 0;
+    
+    typingText.innerHTML = ''; // Clear initial content
+
+    function type() {
+        if (index < finalText.length + name.length) {
+            if (index < finalText.length) {
+                // Typing the first part
+                typingText.innerHTML += finalText.charAt(index);
+            } else {
+                // Typing the name
+                if (index === finalText.length) {
+                    // Add span when starting the name
+                    typingText.innerHTML += '<span class="highlight">';
+                }
+                typingText.querySelector('.highlight').innerHTML += name.charAt(index - finalText.length);
+            }
+            index++;
+            setTimeout(type, 70); // Adjust speed here
+        } else {
+            // Remove the cursor animation after typing is complete
+            typingText.style.borderRight = 'none';
+            index = 0;
+        }
+    }
+
+    // Start typing animation after a small delay
+    setTimeout(type, 1000);
+});
+
+
 // Function to create project cards
 function createProjectCard(project) {
     const card = document.createElement('div');
@@ -63,61 +99,58 @@ document.addEventListener('DOMContentLoaded', () => {
 const container = document.querySelector('.about-me-container');
 const button = document.querySelector('.about-me-button');
 const content = document.querySelector('.about-me-content');
+const projectSection = document.querySelector('#projects');
 let isAnimating = false;
-let closeTimeout; // used to track the timeout
 
 function toggleAboutMe(event) {
-    event.stopPropagation();
+    if(event) event.stopPropagation();
     
     if (isAnimating) return;
     isAnimating = true;
 
-    const ANIMATION_DURATION = 300;
+    const ANIMATION_DURATION = 300; // 300ms = 0.3s to match our CSS
 
     if (container.classList.contains('open')) {
         // Closing animation
         container.classList.remove('open');
         
-        // Wait for the FULL closing animation to finish before showing button
         setTimeout(() => {
-            // Only restore button visibility after content is fully closed
             button.style.visibility = 'visible';
             button.style.opacity = '1';
             isAnimating = false;
-        }, ANIMATION_DURATION); // Match this to your CSS transition time
+        }, ANIMATION_DURATION);
     } else {
         // Opening animation
-        button.style.visibility = 'hidden'; // Immediately hide button when opening
-        button.style.opacity = '0';
         container.classList.add('open');
-
+        button.style.opacity = '0';
+        button.style.visibility = 'hidden';
+        
         setTimeout(() => {
             isAnimating = false;
         }, ANIMATION_DURATION);
     }
 }
 
-container.addEventListener('mouseleave', () => {
-    if (container.classList.contains('open') && !isAnimating) {
-        closeTimeout = setTimeout(() => {
-            toggleAboutMe(new Event('mouseleave')); // Create a new event to pass to toggleAboutMe
-        }, 2000);
-    }
-});
-// Cancel the closing if mouse returns to container
-container.addEventListener('mouseenter', () => {
-    // Clear the timeout if mouse returns
-    if (closeTimeout) {
-        clearTimeout(closeTimeout);
-    }
+// Auto-open when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        toggleAboutMe();
+    }, 500); // Small delay after page load before opening
 });
 
+// Keep only the click handlers
 button.addEventListener('click', toggleAboutMe);
 content.addEventListener('click', toggleAboutMe);
 
-// Close when clicking outside
+// Modified click-outside handler
 document.addEventListener('click', (event) => {
-    if (!container.contains(event.target) && container.classList.contains('open')) {
+    // Only close if:
+    // 1. Click is outside the about-me container
+    // 2. Click is NOT inside the projects section
+    // 3. Container is currently open
+    if (!container.contains(event.target) && 
+        !projectsSection.contains(event.target) && 
+        container.classList.contains('open')) {
         toggleAboutMe(event);
     }
 });

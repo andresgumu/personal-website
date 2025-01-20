@@ -43,6 +43,19 @@ header h1 {
     margin-bottom: .2rem;
 }
 
+.typing-text {
+    overflow: hidden;
+    border-right: 2px solid var(--accent-color);
+    white-space: nowrap;
+    margin: 0;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent-color) }
+}
+
 h2 {
     margin-bottom: 1rem;
 }
