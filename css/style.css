@@ -247,8 +247,7 @@ footer {
 }
 
 /* Update the open state to include image animation */
-.about-me-container.open .about-me-text,
-.about-me-container.open .about-me-image {
+ .about-me-text .about-me-image {
     opacity: 1;
     visibility: visible;
     transition-delay: 0.15s;
@@ -257,32 +256,18 @@ footer {
 /* button css styling */
 
 .about-me-container {
-    width: 200px;
-    margin-bottom: 1rem;
+    width: 100%;
+    margin-bottom: 50px;
 }
 
-.about-me-button {
-    width: 100px;
-    height: 40px;
-    background-color: var(--bg-color);
-    color: white;
-    border-radius: 13px;
-    cursor: pointer;
-    font-size: 16px;
-    position: relative;
-    z-index: 2; /* keep button on top */
-    opacity: 1;
-    transition: all 0.3s ease;
-    visibility: visible;
-}
 
 .about-me-content {
-    width: 100px;
-    height: 40px;
+    width: 1136px;
+    height: 500px;
     border-radius: 13px;
     overflow: hidden;
     transition: all 0.3s ease;
-    margin-top: -40px;
+    margin-top: -40px; 
 }
 
 .about-me-text {
@@ -293,23 +278,15 @@ footer {
     visibility: hidden;
 }
 
-.about-me-container.open {
-    margin-bottom: 50px; /* This should match your content height */
-}
 
-.about-me-container.open .about-me-button {
-    opacity: 0;
-    visibility: hidden; /* hides button after actuation */
-    pointer-events: none; /* prevents any interaction with the hidden button */
-    transition: all 0.3s ease;
-}
 
-.about-me-container.open .about-me-content {
+
+.about-me-content {
     width: 1136px;
     height: 500px;
 }
 
-.about-me-container.open .about-me-text {
+.about-me-text {
     opacity: 1;
     visibility: visible;
     transition-delay: 0.01s;

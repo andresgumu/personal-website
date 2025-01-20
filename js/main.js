@@ -35,11 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
     typingSubtitle.innerHTML = '';
 
     function showElements() {
-        // Show about me container first
-        aboutMeContainer.style.visibility = 'visible';
-        aboutMeContainer.style.opacity = '1';
+        // Show about me container and its contents
+        aboutMeContainer.classList.add('visible-content');
+        aboutMeContainer.querySelector('.about-me-text').style.visibility = 'visible';
+        aboutMeContainer.querySelector('.about-me-text').style.opacity = '1';
+        aboutMeContainer.querySelector('.about-me-image').style.visibility = 'visible';
+        aboutMeContainer.querySelector('.about-me-image').style.opacity = '1';
         
-        // Then start the sequence with other elements
+        // Then show other elements
         setTimeout(() => {
             nav.classList.add('nav-visible');
             
@@ -49,9 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     footer.classList.add('footer-visible');
                 }, 500);
-                
             }, 500);
-            
         }, 500);
     }
 
@@ -62,12 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeSubtitle, 30);
         } else {
             typingSubtitle.style.borderRight = 'none';
-            setTimeout(() => {
-                // Show and open about me container
-                aboutMeContainer.style.display = 'block';
-                toggleAboutMe();
-                setTimeout(showElements, 1000);
-            }, 500);
+            setTimeout(showElements, 500); 
         }
     }
 
@@ -89,9 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeSubtitle, 500);
         }
     }
-
-    // Initially hide about me container
-    aboutMeContainer.style.display = 'none';
 
     typeTitle();
 });
