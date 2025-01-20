@@ -28,12 +28,23 @@ body {
 
 /* Header styles */
 header {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
+.header-content {
+    display: flex;
+    justify-content: space-between;  /* Pushes name and nav apart */
+    align-items: center;            /* Centers items vertically */
+    margin-bottom: 10px;
+}
+/* "header" is a descendant selector which means "target any h1 element that is inside a header element */
 header h1 {
     font-size: 2rem;
     margin-bottom: .2rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
 }
 
 .highlight {
@@ -42,7 +53,8 @@ header h1 {
 
 /* Navigation */
 nav {
-    margin-bottom: 3rem;
+    display: flex;
+    gap: 1rem; /* space between the nav links */  
 }
 
 nav a {
@@ -130,4 +142,71 @@ footer {
     .project-card.expanded {
         grid-column: span 1;
     }
+}
+
+/* button css styling */
+
+.about-me-container {
+    width: 200px;
+    margin-bottom: 1rem;
+}
+
+.about-me-button {
+    width: 100px;
+    height: 40px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+    z-index: 2; /* keep button on top */
+    opacity: 1;
+    transition: opacity 0.1s ease;
+    visibility: visible;
+}
+
+.about-me-content {
+    width: 100px;
+    height: 40px;
+    background-color: #2980b9;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    margin-top: -40px;
+    border-radius: 13px;
+}
+
+.about-me-text {
+    padding: 20px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    visibility: hidden;
+}
+
+.about-me-container.open {
+    margin-bottom: 50px; /* This should match your content height */
+}
+
+.about-me-container.open .about-me-button {
+    opacity: 0;
+    visibility: hidden; /* hides button after actuation */
+    pointer-events: none; /* prevents any interaction with the hidden button */
+}
+
+.about-me-container.open .about-me-content {
+    width: 1136px;
+    height: 200px;
+}
+
+.about-me-container.open .about-me-text {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.3s;
+}
+
+/* neat trick I learned to change the color of any SVG (use filter along with isotropic's hex -> css filter */
+.icon-color {
+    filter: invert(100%) sepia(1%) saturate(0%) hue-rotate(188deg) brightness(105%) contrast(104%); ;
 }
