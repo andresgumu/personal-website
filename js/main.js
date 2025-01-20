@@ -22,29 +22,52 @@ const projects = [
 document.addEventListener('DOMContentLoaded', () => {
     const titleText = "hey, I'm ";
     const name = "Andrés Gumucio";
-    const subtitleText = "I love building things with code.";
+    const subtitleText = "I am an engineering student at Texas A&M.";
     const typingTitle = document.querySelector('.typing-text');
     const typingSubtitle = document.querySelector('.typing-subtitle');
-    const container = document.querySelector('.about-me-container');
+    const nav = document.querySelector('nav');
+    const aboutMeContainer = document.querySelector('.about-me-container');
+    const projectsSection = document.querySelector('#projects');
+    const footer = document.querySelector('footer');
     let index = 0;
     
     typingTitle.innerHTML = '';
     typingSubtitle.innerHTML = '';
 
-    function openButton() {
-        if (!container.classList.contains('open')) {  // Only open if it's not already open
-            toggleAboutMe();
-        }
+    function showElements() {
+        // Show about me container first
+        aboutMeContainer.style.visibility = 'visible';
+        aboutMeContainer.style.opacity = '1';
+        
+        // Then start the sequence with other elements
+        setTimeout(() => {
+            nav.classList.add('nav-visible');
+            
+            setTimeout(() => {
+                projectsSection.classList.add('projects-visible');
+                
+                setTimeout(() => {
+                    footer.classList.add('footer-visible');
+                }, 500);
+                
+            }, 500);
+            
+        }, 500);
     }
 
     function typeSubtitle() {
         if (index < subtitleText.length) {
             typingSubtitle.innerHTML += subtitleText.charAt(index);
             index++;
-            setTimeout(typeSubtitle, 50);
+            setTimeout(typeSubtitle, 30);
         } else {
             typingSubtitle.style.borderRight = 'none';
-            setTimeout(openButton, 500);
+            setTimeout(() => {
+                // Show and open about me container
+                aboutMeContainer.style.display = 'block';
+                toggleAboutMe();
+                setTimeout(showElements, 1000);
+            }, 500);
         }
     }
 
@@ -59,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 typingTitle.querySelector('.highlight').innerHTML += name.charAt(index - titleText.length);
             }
             index++;
-            setTimeout(typeTitle, 50);
+            setTimeout(typeTitle, 30);
         } else {
             typingTitle.style.borderRight = 'none';
             index = 0;
@@ -67,7 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    setTimeout(typeTitle, 200); // time until function is called and animation starts
+    // Initially hide about me container
+    aboutMeContainer.style.display = 'none';
+
+    typeTitle();
 });
 
 
@@ -126,10 +152,14 @@ function toggleAboutMe(event) {
     isAnimating = true;
 
     const ANIMATION_DURATION = 300; // 300ms = 0.3s to match our CSS
+    const projectsSection = document.querySelector('#projects');
+    const footer = document.querySelector('footer');
 
     if (container.classList.contains('open')) {
         // Closing animation
         container.classList.remove('open');
+        projectsSection.classList.remove('visible-content');
+        footer.classList.remove('visible-content');
         
         setTimeout(() => {
             button.style.visibility = 'visible';
@@ -143,6 +173,8 @@ function toggleAboutMe(event) {
         button.style.visibility = 'hidden';
         
         setTimeout(() => {
+            projectsSection.classList.add('visible-content');
+            footer.classList.add('visible-content');
             isAnimating = false;
         }, ANIMATION_DURATION);
     }
