@@ -62,6 +62,7 @@ nav a {
     text-decoration: none;
     margin-right: 2rem;
     font-size: 1.1rem;
+    font-weight: 650;
 }
 
 nav a:hover {
@@ -118,6 +119,7 @@ footer {
 
 .social-links {
     display: flex;
+    justify-content: flex-end;
     gap: 1.5rem;
 }
 
@@ -172,7 +174,7 @@ footer {
     height: 40px;
     background-color: #2980b9;
     overflow: hidden;
-    transition: all 0.5s ease;
+    transition: all 0.2s ease;
     margin-top: -40px;
     border-radius: 13px;
 }
@@ -181,7 +183,7 @@ footer {
     padding: 20px;
     color: white;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.1s ease;
     visibility: hidden;
 }
 
@@ -203,7 +205,7 @@ footer {
 .about-me-container.open .about-me-text {
     opacity: 1;
     visibility: visible;
-    transition-delay: 0.3s;
+    transition-delay: 0.01s;
 }
 
 /* neat trick I learned to change the color of any SVG (use filter along with isotropic's hex -> css filter */

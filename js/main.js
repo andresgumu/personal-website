@@ -2,10 +2,19 @@
 const projects = [
     {
         title: ' A Data Acquisition System (DAQ)',
-        description: 'Description of your first project. This can be multiple lines long and will expand when clicked.',
+        description: `A modular sensor integration and data acquisition platform 
+                    capable of real-time monitoring, processing, and logging of multiple 
+                    environmental and motion parameters.`,
         technologies: ['HTML', 'CSS', 'JavaScript'],
-        link: 'https://github.com/yourusername/project-one'
+        link: 'https://github.com/andresgumu/daq-system'
     },
+
+    {
+        title: "Large Field Electromagnetic Inductor",
+        description: 'Description of your first project. This can be multiple lines long and will expand when clicked.',
+        technologies: ['Python', 'Arduino v2.3.3', 'C++'],
+        link: 'https://github.com/yourusername/project-one'
+    }
     // Add more projects here
 ];
 
@@ -50,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeProjects();
 });
 
+// js for the "about me" button
 const container = document.querySelector('.about-me-container');
 const button = document.querySelector('.about-me-button');
 const content = document.querySelector('.about-me-content');
