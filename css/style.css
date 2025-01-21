@@ -103,7 +103,7 @@ header h1 {
 }
 
 h2 {
-    margin-bottom: 1rem;
+    margin-bottom: .2rem;
 }
 
 .highlight {
@@ -113,20 +113,85 @@ h2 {
 /* Navigation */
 nav {
     display: flex;
-    gap: 1rem; /* space between the nav links */  
+    gap: 2rem; /* space between the nav links */  
+    align-items: center;
+}
+
+.resume-button {
+    background-color: var(--accent-color);
+    padding: 0.25rem .9rem;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.resume-button:hover {
+    background-color: var(--bg-color);
+}
+
+/* Update your existing nav styles to align the button vertically */
+nav {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
 
 nav a {
     color: var(--text-color);
     text-decoration: none;
     margin-right: 2rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 650;
 }
 
 nav a:hover {
     color: var(--accent-color);
 }
+
+
+
+
+/* icons in about me section */
+
+.main-bio {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.current-interests {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.interest-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.interest-icon {
+    margin-top: 1rem;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(83, 149, 225, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+}
+
+.interest-label {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.interest-item p {
+    margin: 0;
+}
+
+
 
 /* Projects Grid */
 .projects-grid {
