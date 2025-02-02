@@ -5,7 +5,7 @@
     --bg-color: #c9c7c2;
     --text-color: #000000;
     --accent-color: #4268d2;
-    --card-bg: #3c3c3c;
+    --card-bg: #b8b7b36d;
 }
 
 * {
@@ -50,7 +50,7 @@ h2 {
 ----------------------------- */
 
 header {
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
 }
 
 .header-content {
@@ -88,6 +88,8 @@ nav a:hover {
     padding: 0.25rem .9rem;
     border-radius: 10px;
     transition: background-color 0.3s ease;
+    color: white
+
 }
 
 .resume-button:hover {
@@ -139,7 +141,7 @@ nav a:hover {
     border-radius: 13px;
     overflow: hidden;
     transition: all 0.3s ease;
-    margin-top: -40px; 
+    margin-top: 0; 
 }
 
 /* style personal image and maintain animations */ 
@@ -148,11 +150,12 @@ nav a:hover {
     justify-content: space-between;
     gap: 2rem;
     height: 100%;
+    align-items: flex-start; /* Aligns items to the top */
 }
 
 .about-me-text {
     flex: 0 1 70%;  /* Takes up available space */
-    padding: 20px;
+    padding: 0 20px;
     font-size: 15px;
     font-weight: 400;
     color: var(--text-color);
@@ -200,6 +203,7 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    margin-top: 2rem;
 }
 
 .interest-item {
@@ -344,7 +348,7 @@ footer {
 
 /* neat trick I learned to change the color of any SVG (use filter along with isotropic's hex -> css filter */
 .icon-color {
-    filter: invert(100%) sepia(1%) saturate(0%) hue-rotate(188deg) brightness(105%) contrast(104%); ;
+    filter: invert(0%) sepia(92%) saturate(10%) hue-rotate(289deg) brightness(108%) contrast(99%); 
 }
 
 /* -----------------------------

@@ -97,13 +97,16 @@ function createProjectCard(project) {
     
     card.innerHTML = `
         <h3>${project.title}</h3>
-        <div class="project-description" style="display: none;">
+        <div class="project-description">
             <p>${project.description}</p>
             <div class="project-tech">
                 ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
             </div>
         </div>
     `;
+
+
+    card.classList.add('expanded');
 
     // Add click event to toggle description
     card.addEventListener('click', () => {
