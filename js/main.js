@@ -1,4 +1,14 @@
+
+function isFirstVisit() {
+    if (localStorage.getItem('hasVisited')) {
+        return false;
+    }
+    localStorage.setItem('hasVisited', 'true');
+    return true;
+}
+
 // Project data
+
 const projects = [
     {
         title: ' A Data Acquisition System (DAQ)',
@@ -19,11 +29,18 @@ const projects = [
 // Blog posts data
 const posts = [
     {
-        id: 'post-1',
-        title: 'First Blog Post Title',
-        description: 'A brief description of what this post is about. This will appear in the preview card.',
-        date: 'January 15, 2024',
-        url: '/posts/post-1.html'
+        id: 'post-4',
+        title: 'Fourth Blog Post Title',
+        description: 'Yet another fascinating topic to explore in this blog post.',
+        date: 'January 25, 2024',
+        url: '/posts/post-4.html'
+    },
+    {
+        id: 'post-3',
+        title: 'Third Blog Post Title',
+        description: 'Yet another fascinating topic to explore in this blog post.',
+        date: 'January 25, 2024',
+        url: '/posts/post-3.html'
     },
     {
         id: 'post-2',
@@ -33,11 +50,11 @@ const posts = [
         url: '/posts/post-2.html'
     },
     {
-        id: 'post-3',
-        title: 'Third Blog Post Title',
-        description: 'Yet another fascinating topic to explore in this blog post.',
-        date: 'January 25, 2024',
-        url: '/posts/post-3.html'
+        id: 'post-1',
+        title: 'First Blog Post Title',
+        description: 'A brief description of what this post is about. This will appear in the preview card.',
+        date: 'January 15, 2024',
+        url: '/posts/post-1.html'
     }
 ];
 
@@ -109,10 +126,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const footer = document.querySelector('footer');
     let index = 0;
     
-    typingTitle.innerHTML = '';
-    typingSubtitle.innerHTML = '';
+    //To test this during development, you can clear the flag by opening your browser's 
+    // developer tools, going to Application > Local Storage, and removing the 
+    // 'hasVisited' item.
+
+    if (isFirstVisit()) {
+        // First visit - do the animations
+        typingTitle.innerHTML = '';
+        typingSubtitle.innerHTML = '';
+        typeTitle();
+    } else {
+        // Returning visit - show everything immediately
+        typingTitle.innerHTML = titleText + '<span class="highlight">' + name + '</span>';
+        typingSubtitle.innerHTML = subtitleText;
+        typingTitle.style.borderRight = 'none';
+        typingSubtitle.style.borderRight = 'none';
+        
+        // Show all elements immediately
+        aboutMeContainer.classList.add('visible-content');
+        aboutMeContainer.querySelector('.about-me-text').style.visibility = 'visible';
+        aboutMeContainer.querySelector('.about-me-text').style.opacity = '1';
+        aboutMeContainer.querySelector('.about-me-image').style.visibility = 'visible';
+        aboutMeContainer.querySelector('.about-me-image').style.opacity = '1';
+        nav.classList.add('nav-visible');
+        projectsSection.classList.add('projects-visible');
+        footer.classList.add('footer-visible');
+        const writingSection = document.querySelector('#writing');
+        writingSection.classList.add('writing-visible');
+        document.body.classList.add('scrollable');
+        document.querySelector('.container').classList.add('expanded');
+    }
+
+
+
 
     function showElements() {
+        // Show about me container and its contents
         aboutMeContainer.classList.add('visible-content');
         aboutMeContainer.querySelector('.about-me-text').style.visibility = 'visible';
         aboutMeContainer.querySelector('.about-me-text').style.opacity = '1';
@@ -127,8 +176,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 setTimeout(() => {
                     footer.classList.add('footer-visible');
-                }, 500);
-            }, 500);
+                    
+                    setTimeout(() => {
+                        const writingSection = document.querySelector('#writing');
+                        writingSection.classList.add('writing-visible');
+                        
+                        // Enable scrolling after all animations
+                        setTimeout(() => {
+                            document.body.classList.add('scrollable');
+                            document.querySelector('.container').classList.add('expanded');
+                        }, 100);
+                    }, 200);
+                }, 300);
+            }, 300);
         }, 500);
     }
 
@@ -162,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    typeTitle();
     initializeProjects();
     initializeWriting();
 });

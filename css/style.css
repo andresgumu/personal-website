@@ -26,6 +26,20 @@ body {
     line-height: 1.6;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Hide scrollbar initially */
+    height: 100vh; /* Full viewport height */
+    position: fixed; /* This prevents any scrolling */
+    width: 100%;
+}
+
+body.scrollable {
+    overflow: auto;
+    position: static; /* Remove the fixed position to allow scrolling */
+}
+
 /* centers content and sets maximum width */
 .container {
     max-width: 1200px;
@@ -243,7 +257,7 @@ nav a:hover {
     /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  auto-fit and minmax create a responsive grid (will wrap automatically on smaller screens) */
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
 }
 
 .project-card {
@@ -287,10 +301,21 @@ nav a:hover {
 
 /* Writing Section Styles */
 .posts-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
+}
+
+.writing-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.writing-visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .post-card {
@@ -304,13 +329,13 @@ nav a:hover {
 }
 
 .post-card:hover {
-    transform: translateX(10px);
+    transform: translateY(-10px);
 }
 
 .post-title {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: #ffffff;
+    color: #000000;
 }
 
 .post-description {
