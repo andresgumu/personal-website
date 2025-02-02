@@ -2,10 +2,10 @@
    CSS Variables & Reset
 ----------------------------- */
 :root {
-    --bg-color: #1a1a1a;
-    --text-color: #ffffff;
+    --bg-color: #c9c7c2;
+    --text-color: #000000;
     --accent-color: #4268d2;
-    --card-bg: #2a2a2a;
+    --card-bg: #3c3c3c;
 }
 
 * {
@@ -38,7 +38,7 @@ body {
 ----------------------------- */
 
 h2 {
-    margin-bottom: .2rem;
+    margin-bottom: .4rem;
 }
 
 .highlight {
@@ -50,7 +50,7 @@ h2 {
 ----------------------------- */
 
 header {
-    margin-bottom: 2rem;
+    margin-bottom: 6rem;
 }
 
 .header-content {
@@ -61,7 +61,7 @@ header {
 }
 /* "header" is a descendant selector which means "target any h1 element that is inside a header element */
 header h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: .2rem;
 }
 
@@ -109,6 +109,7 @@ nav a:hover {
 
 .typing-subtitle {
     overflow: hidden;
+    font-size: 15px;
     border-right: 2px solid var(--accent-color);
     white-space: nowrap;
     margin: 0;
@@ -152,7 +153,9 @@ nav a:hover {
 .about-me-text {
     flex: 0 1 70%;  /* Takes up available space */
     padding: 20px;
-    color: white;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-color);
     opacity: 0;
     transition: opacity 0.3s ease;
     visibility: hidden;
@@ -163,8 +166,8 @@ nav a:hover {
 }
 
 .about-me-image {
-    width: 460px;      /* Adjust based on your needs */
-    height: 460px;     /* Adjust based on your needs */
+    width: 600px;      /* Adjust based on your needs */
+    height: 500px;     /* Adjust based on your needs */
     opacity: 0;
     transition: opacity 0.3s ease;
     visibility: hidden;
