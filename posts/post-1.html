@@ -3,49 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Title - Andrés' Blog</title>
+    <title>Blog Post Title - Andrés Gumucio</title>
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="../css/style.css">
-    <!-- Add marked.js for Markdown parsing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.2.12/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/blog.js"></script>
 </head>
 <body>
-    <div class="post-container">
-        <a href="../index.html" class="back-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 12H5"/>
-                <path d="M12 19l-7-7 7-7"/>
-            </svg>
-            Back to Home
-        </a>
+    <div class="container">
+        <article class="blog-post">
+            <!-- Back to Home Link -->
+            <a href="../index.html" class="back-button">
+                ← Back to Home
+            </a>
 
-        <article class="post-content">
+            <!-- Post Header -->
             <header class="post-header">
-                <h1 class="post-title">{{POST_TITLE}}</h1>
-                <time class="post-date">{{POST_DATE}}</time>
+                <h1 class="post-title">Your Blog Post Title</h1>
+                <div class="post-metadata">
+                    <time datetime="2024-02-19">February 19, 2024</time>
+                    <span class="reading-time">calculating...</span>
+                </div>
             </header>
 
-            <div class="markdown-content">
-                {{POST_CONTENT}}
+            <!-- Post Content - Paste your Markdown here -->
+            <div class="post-content markdown-content" id="content">
+# Your Title
+
+Your content here...
             </div>
 
-            <footer class="post-sources">
-                <h3>Sources & References</h3>
-                <ul class="sources-list">
-                    {{POST_SOURCES}}
-                </ul>
+            <!-- Post Footer -->
+            <footer class="post-footer">
+                <div class="post-tags">
+                    <span class="tag">Tag 1</span>
+                    <span class="tag">Tag 2</span>
+                </div>
             </footer>
         </article>
     </div>
-
-    <script>
-        // Convert markdown to HTML
-        document.addEventListener('DOMContentLoaded', () => {
-            const markdownContent = document.querySelector('.markdown-content');
-            if (markdownContent) {
-                const rawMarkdown = markdownContent.textContent;
-                markdownContent.innerHTML = marked(rawMarkdown);
-            }
-        });
-    </script>
 </body>
 </html>
