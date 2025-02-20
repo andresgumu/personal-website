@@ -29,9 +29,14 @@ body {
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Hide scrollbar initially */
-    height: 100vh; /* Full viewport height */
-    position: fixed; /* This prevents any scrolling */
+    width: 100%;
+}
+
+/* Animation page specific styles */
+.animation-page {
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
     width: 100%;
 }
 

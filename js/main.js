@@ -1,4 +1,3 @@
-
 function isFirstVisit() {
     if (localStorage.getItem('hasVisited')) {
         return false;
@@ -8,7 +7,6 @@ function isFirstVisit() {
 }
 
 // Project data
-
 const projects = [
     {
         title: ' A Data Acquisition System (DAQ)',
@@ -73,9 +71,7 @@ function createProjectCard(project) {
         </div>
     `;
     
-    // Add expanded class by default
     card.classList.add('expanded');
-
     return card;
 }
 
@@ -126,17 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const footer = document.querySelector('footer');
     let index = 0;
     
-    //To test this during development, you can clear the flag by opening your browser's 
-    // developer tools, going to Application > Local Storage, and removing the 
-    // 'hasVisited' item.
-
+    // Add animation-page class at the start for first visits
     if (isFirstVisit()) {
+        document.body.classList.add('animation-page');
         // First visit - do the animations
         typingTitle.innerHTML = '';
         typingSubtitle.innerHTML = '';
         typeTitle();
     } else {
         // Returning visit - show everything immediately
+        document.body.classList.remove('animation-page');
         typingTitle.innerHTML = titleText + '<span class="highlight">' + name + '</span>';
         typingSubtitle.innerHTML = subtitleText;
         typingTitle.style.borderRight = 'none';
@@ -153,12 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
         footer.classList.add('footer-visible');
         const writingSection = document.querySelector('#writing');
         writingSection.classList.add('writing-visible');
-        document.body.classList.add('scrollable');
         document.querySelector('.container').classList.add('expanded');
     }
-
-
-
 
     function showElements() {
         // Show about me container and its contents
@@ -181,9 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         const writingSection = document.querySelector('#writing');
                         writingSection.classList.add('writing-visible');
                         
-                        // Enable scrolling after all animations
+                        // Enable scrolling after all animations by removing animation-page class
                         setTimeout(() => {
-                            document.body.classList.add('scrollable');
+                            document.body.classList.remove('animation-page');
                             document.querySelector('.container').classList.add('expanded');
                         }, 100);
                     }, 200);
@@ -225,3 +216,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeProjects();
     initializeWriting();
 });
+
