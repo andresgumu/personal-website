@@ -1,4 +1,12 @@
 /* Blog Post Specific Styles */
+/* Override the fixed position for blog posts */
+
+body.blog-page {
+    position: static;
+    overflow: auto;
+    height: auto;
+}
+
 .blog-post {
     max-width: 800px;
     margin: 0 auto;

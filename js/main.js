@@ -51,7 +51,7 @@ const posts = [
     },
     {
         id: 'post-1',
-        title: 'First Blog Post Title',
+        title: 'Engineering at an Intersection',
         description: 'A brief description of what this post is about. This will appear in the preview card.',
         date: 'January 15, 2024',
         url: '/posts/post-1.html'
