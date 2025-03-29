@@ -1,6 +1,6 @@
 /* Blog Post Specific Styles */
 .blog-post {
-    max-width: 800px;
+    max-width: 900px; /* adjust the width of text of the content on the page*/
     margin: 0 auto;
     padding: 2rem 1rem;
 }
